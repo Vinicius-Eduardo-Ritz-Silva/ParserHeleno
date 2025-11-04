@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1757460480 source:c:\users\mister cristão\desktop\milena\lexer\main.cpp
+	<iostream>
+	"Token.h"
+	"Lexer.h"
+
+1757460424 source:c:\users\mister cristão\desktop\milena\lexer\src\lexer.cpp
+	"Lexer.h"
+	<stdexcept>
+
+1757458477 c:\users\mister cristão\desktop\milena\lexer\include\lexer.h
+	<string>
+	<vector>
+	"Token.h"
+
+1757458138 c:\users\mister cristão\desktop\milena\lexer\include\token.h
+	<string>
+	"TipoDeToken.h"
+
+1757458128 c:\users\mister cristão\desktop\milena\lexer\include\tipodetoken.h
+
+1762298202 source:c:\users\mister cristão\desktop\lexer 1\lexer\main.cpp
+	<iostream>
+	"Token.h"
+	"Lexer.h"
+	"Parser.h"
+
+1758602746 c:\users\mister cristão\desktop\lexer 1\lexer\include\token.h
+	<string>
+	"TipoDeToken.h"
+
+1758602008 c:\users\mister cristão\desktop\lexer 1\lexer\include\tipodetoken.h
+
+1758602028 c:\users\mister cristão\desktop\lexer 1\lexer\include\lexer.h
+	<string>
+	<vector>
+	"Token.h"
+
+1758666690 source:c:\users\mister cristão\desktop\lexer 1\lexer\src\lexer.cpp
+	"Lexer.h"
+	<stdexcept>
+
+1762298095 source:c:\users\mister cristão\desktop\lexer 1\lexer\src\parser.cpp
+	"Parser.h"
+
+1762298448 c:\users\mister cristão\desktop\lexer 1\lexer\include\parser.h
+	<vector>
+	"Token.h"
+
