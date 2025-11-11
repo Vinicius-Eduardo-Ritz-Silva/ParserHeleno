@@ -14,7 +14,10 @@ class Parser
 
     private:
         vector<Token> tokens;
+        void avancar();
+        void erro();
         void E(), ELinha(), T();
+        void TLinha(), F();
         int posicao_atual;
         Token token_atual;
 };
