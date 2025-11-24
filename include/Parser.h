@@ -18,6 +18,11 @@ class Parser
         void erro(string msg);
         void E(), ELinha(), T();
         void TLinha(), F();
+        void Statement();
+        void Block();
+        void IfStatement();
+        void WhileStatement();
+        void ForStatement();
         int posicao_atual;
         Token token_atual;
 };

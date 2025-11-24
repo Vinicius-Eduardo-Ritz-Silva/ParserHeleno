@@ -42,7 +42,9 @@ void Parser::erro(string msg){
 
 void Parser::analisar()
 {
-    E();
+    while(token_atual.getTipo() != TipoDeToken::DESCONHECIDO) {
+        Statement();
+    }
 }
 
 //E  -> T E'
@@ -122,14 +124,160 @@ void Parser::F(){
         cout << "   Consumindo: " << token_atual.print() << endl;
         avancar();
     }
-    else {
-        if(token_atual.getTipo() == TipoDeToken::NUMERO_INTEIRO){
-            cout << "Expandindo F --> NUMERO_INTEIRO" << endl;
+    else if(token_atual.getTipo() == TipoDeToken::NUMERO_INTEIRO){
+        cout << "Expandindo F --> NUMERO_INTEIRO" << endl;
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+    }
+    else if(token_atual.getLexema() == "("){
+        cout << "Expandindo F --> ( E )" << endl;
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+        E();
+        if(token_atual.getLexema() == ")"){
             cout << "   Consumindo: " << token_atual.print() << endl;
             avancar();
         }
         else{
-            erro("Aguardando IDENTIFICADOR ou NUMERO_INTEIRO, mas encontrou: " + token_atual.print());
+            erro("Esperado ')' mas encontrou: " + token_atual.print());
         }
+    }
+    else{
+        erro("Aguardando IDENTIFICADOR, NUMERO_INTEIRO ou '(', mas encontrou: " + token_atual.print());
+    }
+}
+
+void Parser::Statement() {
+    if (token_atual.getLexema() == "if") {
+        IfStatement();
+    } else if (token_atual.getLexema() == "while") {
+        WhileStatement();
+    } else if (token_atual.getLexema() == "for") {
+        ForStatement();
+    } else if (token_atual.getLexema() == "{") {
+        Block();
+    } else {
+        E();
+        if (token_atual.getLexema() == ";") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+        } else {
+            erro("Esperado ';' apos expressao, mas encontrou: " + token_atual.print());
+        }
+    }
+}
+
+void Parser::Block() {
+    cout << "Expandindo Block --> { StatementList }" << endl;
+    if (token_atual.getLexema() == "{") {
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+        
+        while (token_atual.getLexema() != "}" && token_atual.getTipo() != TipoDeToken::DESCONHECIDO) {
+            Statement();
+        }
+
+        if (token_atual.getLexema() == "}") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+        } else {
+            erro("Esperado '}' ao final do bloco.");
+        }
+    } else {
+        erro("Esperado '{' no inicio do bloco.");
+    }
+}
+
+void Parser::IfStatement() {
+    cout << "Expandindo IfStatement --> if ( E ) Statement" << endl;
+    cout << "   Consumindo: " << token_atual.print() << endl; // if
+    avancar();
+
+    if (token_atual.getLexema() == "(") {
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+        E();
+        if (token_atual.getLexema() == ")") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+            Statement();
+            
+            if (token_atual.getLexema() == "else") {
+                cout << "Expandindo ElsePart --> else Statement" << endl;
+                cout << "   Consumindo: " << token_atual.print() << endl;
+                avancar();
+                Statement();
+            }
+        } else {
+            erro("Esperado ')' apos condicao do if.");
+        }
+    } else {
+        erro("Esperado '(' apos if.");
+    }
+}
+
+void Parser::WhileStatement() {
+    cout << "Expandindo WhileStatement --> while ( E ) Statement" << endl;
+    cout << "   Consumindo: " << token_atual.print() << endl; // while
+    avancar();
+
+    if (token_atual.getLexema() == "(") {
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+        E();
+        if (token_atual.getLexema() == ")") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+            Statement();
+        } else {
+            erro("Esperado ')' apos condicao do while.");
+        }
+    } else {
+        erro("Esperado '(' apos while.");
+    }
+}
+
+void Parser::ForStatement() {
+    cout << "Expandindo ForStatement --> for ( ... ) Statement" << endl;
+    cout << "   Consumindo: " << token_atual.print() << endl; // for
+    avancar();
+
+    if (token_atual.getLexema() == "(") {
+        cout << "   Consumindo: " << token_atual.print() << endl;
+        avancar();
+        
+        if (token_atual.getLexema() != ";") {
+            E(); 
+        }
+        if (token_atual.getLexema() == ";") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+        } else {
+             erro("Esperado ';' apos inicializacao do for.");
+        }
+
+        if (token_atual.getLexema() != ";") {
+            E();
+        }
+        if (token_atual.getLexema() == ";") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+        } else {
+             erro("Esperado ';' apos condicao do for.");
+        }
+
+        if (token_atual.getLexema() != ")") {
+            E();
+        }
+        
+        if (token_atual.getLexema() == ")") {
+            cout << "   Consumindo: " << token_atual.print() << endl;
+            avancar();
+            Statement();
+        } else {
+            erro("Esperado ')' apos incremento do for.");
+        }
+    } else {
+        erro("Esperado '(' apos for.");
     }
 }

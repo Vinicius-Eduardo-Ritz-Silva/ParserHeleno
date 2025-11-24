@@ -9,7 +9,7 @@ int main()
 {
     try
     {
-        string codigo = "10 + 4 * x";
+        string codigo = "if (x) { 10 + 2; } else { while (z) { for (i; i; i) { (1 + 2) * 3; } } }";
 
         cout << endl << "Iniciando analise Lexica..." << endl << endl;
         Lexer lexer(codigo);
