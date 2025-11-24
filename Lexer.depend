@@ -47,3 +47,32 @@
 	<vector>
 	"Token.h"
 
+1764019989 source:c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\main.cpp
+	<iostream>
+	"Token.h"
+	"Lexer.h"
+	"Parser.h"
+
+1764020415 c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\include\token.h
+	<string>
+	"TipoDeToken.h"
+
+1763935572 c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\include\tipodetoken.h
+
+1763935572 c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\include\lexer.h
+	<string>
+	<vector>
+	"Token.h"
+
+1764020620 c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\include\parser.h
+	<vector>
+	"Token.h"
+
+1763935572 source:c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\src\lexer.cpp
+	"Lexer.h"
+	<stdexcept>
+
+1764020097 source:c:\users\vinícius ritz\desktop\vini\6 - confidencial\parserheleno\src\parser.cpp
+	"Parser.h"
+	<iostream>
+

@@ -9,7 +9,7 @@ int main()
 {
     try
     {
-        string codigo = "x + 11 + 1";
+        string codigo = "10 + 4 * x";
 
         cout << endl << "Iniciando analise Lexica..." << endl << endl;
         Lexer lexer(codigo);
@@ -17,12 +17,12 @@ int main()
         for(auto token : listaDeTokens){
             cout << "Token: " << token.getLexema() << " (" << Token::tipoParaString(token.getTipo()) << ") " << endl;
         }
-        cout << endl << "Analise Lexica concluída com sucesso!" << endl << endl;
+        cout << endl << "Analise Lexica concluida com sucesso!" << endl << endl;
 
         cout << endl << "Iniciando analise Sintatica..." << endl << endl;
         Parser parser(listaDeTokens);
         parser.analisar();
-        cout << endl << "Analise Sintatica concluída com sucesso!" << endl << endl;
+        cout << endl << "Analise Sintatica concluida com sucesso!" << endl << endl;
     }
     catch(exception &e)
     {

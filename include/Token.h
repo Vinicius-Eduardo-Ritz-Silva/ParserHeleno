@@ -8,6 +8,8 @@ using namespace std;
 class Token
 {
     public:
+        Token() : tipo(TipoDeToken::DESCONHECIDO), lexema("") {}
+
         Token(TipoDeToken tipo,
               string lexema):
                 tipo(tipo),
@@ -19,6 +21,10 @@ class Token
 
         string getLexema(){
             return lexema;
+        }
+
+        string print(){
+            return "<" + lexema + ", " + Token::tipoParaString(tipo) + ">";
         }
 
         static string tipoParaString(TipoDeToken tipo){
